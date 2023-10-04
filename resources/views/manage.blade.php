@@ -2,6 +2,10 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __($header) }}
+            <a 
+              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2"
+              href="{{ $createLink }}"
+              >New</a>
         </h2>
     </x-slot>
 
@@ -12,7 +16,11 @@
                     @forelse($items as $item)
                         <li>
                             <a href="{{ $item->link }}" class="text-blue-500 hover:underline">
-                                {{ $item->name }}
+                                @isset($item->title)
+                                    {{ $item->title }}
+                                @else
+                                    {{ $item->name}}
+                                @endisset
                             </a>
                         </li>
                     @empty
